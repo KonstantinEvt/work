@@ -6,6 +6,7 @@ import javax.persistence.Table;
 
 @Table
 public class User {
+    private static Long count = 1L;
     @Id
     private Long id;
 
@@ -19,13 +20,14 @@ public class User {
     private Byte age;
 
     public User() {
-
+        this("Unknown","Unknown", (byte) 0);
     }
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+        this.id = count++;
     }
 
     public Long getId() {
@@ -58,5 +60,10 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User id = " + this.id + "   Name:" + this.name + "   LastName:" + this.lastName + "   Age:" + this.age;
     }
 }
